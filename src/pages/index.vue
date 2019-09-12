@@ -1,7 +1,17 @@
 <template>
     <div class="main">
         <div class="main-content">
-                111
+            <div class="title-box">
+                <div class="title-col">
+111
+                </div>
+                <div class="logo" >
+222
+                </div>
+                <div class="title-col">
+333
+                </div>
+            </div>
         </div>
     </div>
 </template>
