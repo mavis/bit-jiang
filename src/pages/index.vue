@@ -74,7 +74,7 @@
         :visible.sync="selectAccountDialogVisible"
         width="20%"
         >
-        <el-select v-model="accountId" placeholder="Select Account">
+        <el-select v-model="accountInfo.accountId" placeholder="Select Account">
             <el-option style="width:100%"
             v-for="item in accountList"
             :key="item.accountId"
@@ -109,9 +109,9 @@
         title="投注"
         :visible.sync="bettingDialogVisible"
         width="30%">
-        <el-form v-model="bettingForm" lable-width='100px'>
-            <el-form-item label="投注金额" required>
-                <el-input v-model="bettingForm.num" ></el-input>
+        <el-form v-model="bettingForm" lable-width='100px' >
+            <el-form-item label="投注金额" required prop='num'>
+                <el-input v-model.number="bettingForm.num" @change='bettingNumChange'></el-input>
             </el-form-item>
             <el-form-item label="号码">
                 <div>
@@ -244,12 +244,18 @@ export default {
                 str += chars.charAt(Math.floor(Math.random() * maxPos))
             }
             return str
-        }     
+        } ,
+        toBet(){
+            this.bettingDialogVisible = true;
+        }  ,
+        bettingNumChange(){
+            
+        }  
     },
     created(){
-        this.getAccountList().then(()=>{
+        // this.getAccountList().then(()=>{
             
-        });
+        // });
 
     }
 }
