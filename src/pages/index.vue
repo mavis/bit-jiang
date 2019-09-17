@@ -1,7 +1,9 @@
 <template>
     <div class="main">
+        <!-- <div class="main-content" 
+        v-if="accountInfo!=''"
+        > 暂时不加限制，可以测试页面-->
         <div class="main-content">
-
             <div class="title-box title clearfix">
                 <div class="title-col">
                     当前奖池{{lotteryBalance}}
