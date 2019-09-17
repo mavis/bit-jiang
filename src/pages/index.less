@@ -2,38 +2,76 @@
 .main{
     background-image: url('../assets/img/bg.jpg');
     background-size:100% auto;
+    font-size:30px*@var;
+    font-weight:bold;
+
     .main-content{
         width: @w-main;
         margin: 0 auto;
     }
 }
 .title-box{
+    padding-top:45px;
     div{
-        display: inline-block;
+        float: left;;
         text-align: center;
         &.title-col{
             height: 157px*@var;
-            width: 754px*@var;
+            line-height: 157px*@var;
+            width: 40%;
             background-image: url('../assets/img/title-bg.png');
             background-repeat: repeat;
             background-size:100% 100%;
         }
         &.logo{
-            width: 285px*@var;
+            width:20%;
         }
     }
-
 }
 .list{
-    width:1188px;
+    width:1148px;
     min-height: 200px;
-    border: 30px double orange;
-    -webkit-border-image: url('../assets/img/border1.jpg') 40% 10% 30% 8% round;
-    border-image: url('../assets/img/border1.jpg') 40% 10% 30% 8% round;
+    border: 50px double orange;
+    -webkit-border-image: url('../assets/img/b-1.png') 40% 10% 30% 10% round;
+    border-image: url('../assets/img/b-1.png') 40% 10% 30% 10% round;
+    margin-top: 50px;
     .list-col{
+        &:last-child{
+            border-left:2px solid #fff000;
+            box-shadow: -4px 0 8px -5px #000;
+        }
         text-align: center;
+        margin-top: -49px;
+        margin-bottom:-40px;
+        padding:50px 0;
+    }
+    .sep-line{
+        display:inline-block;
+        width:4px;
+        height:100px;
+        background-image: url(../assets/img/sep-line.png);
+        background-size:100% auto;
+    }
+    .list-item{
+        line-height: 1.6;
     }
 }
 .rules-title{
-    
+    width:335px*@var;
+    height:60px*@var;
+    line-height: 60px*@var;
+    background-image: url(../assets/img/t-bg.png);
+    background-size:100% auto;
+    text-align: center;
+    margin-bottom:15px;
+}
+.title{
+    font-size:40px*@var;
+    font-weight: bold;
+    margin-bottom:15px;
+}
+.input-code{
+    display: inline-block;
+    width:80px;
+    margin-right:10px;
 }
