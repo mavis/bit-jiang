@@ -69,7 +69,7 @@
             </div> 
 
     </div>
-    <el-dialog
+    <el-dialog :close-on-click-modal="clickClose"
         title="Select Account"
         :visible.sync="selectAccountDialogVisible"
         width="20%"
@@ -87,7 +87,7 @@
             <el-button type="primary" @click="selectAccountConfirm">确 定</el-button>
         </span>
     </el-dialog>
-    <el-dialog
+    <el-dialog :close-on-click-modal="clickClose"
         title="兑换LOTTERY"
         :visible.sync="exchangeDialogVisible"
         width="30%">
@@ -105,29 +105,29 @@
             <el-button type="primary" @click="selectAccountConfirm">确 定</el-button>
         </span>
     </el-dialog>    
-        <el-dialog
+        <el-dialog :close-on-click-modal="clickClose"
         title="投注"
         :visible.sync="bettingDialogVisible"
         width="30%">
-        <el-form v-model="bettingForm" lable-width='100px' >
+        <el-form :model="bettingForm" lable-width='100px' >
             <el-form-item label="投注金额" required prop='num'>
                 <el-input v-model.number="bettingForm.num" @change='bettingNumChange'></el-input>
             </el-form-item>
-            <el-form-item label="号码">
-                <div>
-                    <el-input v-model="bettingForm.code1" class='input-code'></el-input>
-                    <el-input v-model="bettingForm.code2" class='input-code'></el-input>
-                    <el-input v-model="bettingForm.code3" class='input-code'></el-input>
-                    <el-input v-model="bettingForm.code4" class='input-code'></el-input>
+            <el-form-item>
+                <div slot='label'>号码</div>
+                <div v-for="item in bettingFormCodeList" :key='item'>
+                    <el-input v-model="item.code1" class='input-code'></el-input>
+                    <el-input v-model="item.code2" class='input-code'></el-input>
+                    <el-input v-model="item.code3" class='input-code'></el-input>
+                    <el-input v-model="item.code4" class='input-code'></el-input>
                     <el-button @click="randomCode">机选</el-button>
                 </div>
             </el-form-item>
-            <div></div>
             
         </el-form>
         <span slot="footer" class="dialog-footer">
-            <el-button @click="selectAccountDialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="selectAccountConfirm">确 定</el-button>
+            <el-button @click="bettingDialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="bettingConfirm">确 定</el-button>
         </span>
     </el-dialog>  
     </div>
@@ -156,12 +156,10 @@ export default {
                 passW:''
             },
             bettingForm:{
-                num:'',//数量
-                code1:'',
-                code2:'',
-                code3:'',
-                code4:'',
-            }
+               num:0
+            },
+            bettingFormCodeList:[],
+            clickClose:false
         }
     },
     methods:{
@@ -246,11 +244,25 @@ export default {
             return str
         } ,
         toBet(){
+            this.bettingFormCodeList = [];
+            this.bettingForm.num = 0;
             this.bettingDialogVisible = true;
         }  ,
-        bettingNumChange(){
-            
-        }  
+        bettingNumChange(val){
+            console.log(val);
+            this.bettingFormCodeList = [];
+            let num = parseInt(val);
+            for(let i=0;i<num;i++){
+                console.log(i);
+                let obj={
+                    code1:'',code2:'',code3:'',code4:'',
+                }
+                this.bettingFormCodeList.push(obj);
+            }
+        }  ,
+        bettingConfirm(){
+            this.bettingDialogVisible = true;
+        }
     },
     created(){
         // this.getAccountList().then(()=>{
